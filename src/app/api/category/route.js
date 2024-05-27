@@ -1,10 +1,10 @@
+import { CategoryModel } from "@/libs/categoryModel";
 import { NextResponse } from "next/server";
-import { CategoryModel } from "./categoryModel";
 
 export const GET = async () => {
-  const categories = await CategoryModel.findAll();
+  const getCategories = await CategoryModel.findAll();
 
-  return NextResponse.json(categories);
+  return NextResponse.json(getCategories);
 };
 
 export const POST = () => {
