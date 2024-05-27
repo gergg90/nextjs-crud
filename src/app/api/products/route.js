@@ -10,7 +10,7 @@ export const GET = async () => {
 export const POST = async (req) => {
   const data = await req.json();
 
-  const newProduct = await ProductsModel.createProduct(data);
+  const newProduct = await ProductsModel.create(data);
 
   return NextResponse.json(newProduct);
 };
