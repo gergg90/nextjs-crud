@@ -14,7 +14,7 @@ export class ProductsModel {
   };
 
   static findById = (id) => {
-    return prisma.product.findFirst({
+    return prisma.product.findUnique({
       where: {
         id: parseInt(id),
       },

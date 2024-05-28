@@ -25,7 +25,13 @@ export const PATCH = async (req, { params }) => {
 };
 
 export const DELETE = async (req, { params }) => {
-  const productDelete = await ProductsModel.delete(params.id);
-
-  return NextResponse.json(productDelete);
+  try {
+    const deleteProduct = await ProductsModel.delete(params.id);
+    return NextResponse.json({
+      product: deleteProduct,
+      message: "Product deleted successfully",
+    });
+  } catch (e) {
+    return NextResponse.json(e.message);
+  }
 };
