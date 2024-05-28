@@ -16,6 +16,16 @@ export const GET = async (req, { params }) => {
   }
 };
 
-export const PATCH = (req, { params }) => {
-  return NextResponse.json({ message: "Product Api PATCH" });
+export const PATCH = async (req, { params }) => {
+  const body = await req.json();
+
+  const productUpdate = await ProductsModel.update(params.id, body);
+
+  return NextResponse.json(productUpdate);
+};
+
+export const DELETE = async (req, { params }) => {
+  const productDelete = await ProductsModel.delete(params.id);
+
+  return NextResponse.json(productDelete);
 };

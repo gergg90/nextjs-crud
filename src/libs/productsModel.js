@@ -29,4 +29,12 @@ export class ProductsModel {
       data: data,
     });
   };
+
+  static delete = (id) => {
+    return prisma.product.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+  };
 }
