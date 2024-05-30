@@ -1,14 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function NewProduct() {
+function NewProduct({ params }) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0.0);
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState(1);
   const [images, setImages] = useState("");
+
+  useEffect(() => {
+    console.log(params.id);
+  }, []);
 
   const router = useRouter();
 
