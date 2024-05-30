@@ -8,9 +8,17 @@ export const GET = async () => {
 };
 
 export const POST = async (req) => {
-  const data = await req.json();
+  try {
+    const data = await req.json();
 
-  const newProduct = await ProductsModel.create(data);
+    const newProduct = await ProductsModel.create(data);
 
-  return NextResponse.json(newProduct);
+    return NextResponse.json(newProduct);
+  } catch (error) {
+    console.error("Error creating product:", error);
+    return NextResponse.json(
+      { error: "Internal Server Errorrrrrrr" },
+      { status: 500 }
+    );
+  }
 };
