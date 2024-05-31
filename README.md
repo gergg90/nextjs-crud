@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto de CRUD de Productos con Next.js y Tailwind CSS
 
-## Getting Started
+Este es un proyecto básico de Next.js que implementa un CRUD (Crear, Leer, Actualizar, Eliminar) de productos. La interfaz de usuario está estilizada con Tailwind CSS.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework:** Next.js
+- **Estilos:** Tailwind CSS
+- **Storage:** Prisma ORM
+- **Funcionalidades:** CRUD de productos
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requisitos
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Asegúrate de tener instalado lo siguiente en tu sistema:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Node.js (versión 12 o superior)
+- npm (versión 6 o superior) o yarn
 
-## Learn More
+## Instalación
 
-To learn more about Next.js, take a look at the following resources:
+Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clona este repositorio:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   ```
 
-## Deploy on Vercel
+2. **Navega al directorio del proyecto:**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   cd tu-repositorio
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Instala las dependencias:**
+   ```bash
+   npm install
+   ```
+
+## Prisma
+
+1. **Selecciona el interprete de tu base de datos. postgre, mysql, mongodb o por defecto sqlite:**
+
+   ```bash
+   npx prisma init --datasource-provider sqlite
+   ```
+
+2. **Crea las migraciones con los modelos ya creados:**
+
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+
+## Uso
+
+1. **Clona este repositorio:**
+   ```bash
+   npm run dev
+   ```
+2. **Abre tu navegador y navega a:**
+
+   ```bash
+   http://localhost:3000/
+   ```
+
+3. **Carpeta de Api:**
+
+   ```bash
+   http://localhost:3000/api/category
+   http://localhost:3000/api/products
+   ```
+
+4. **Interfaz de usuario:**
+   - Crea categorias.
+   - Crea productos.
+   - Manejalos por la interfaz del cliente utilizando un crud.
