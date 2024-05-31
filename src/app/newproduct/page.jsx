@@ -185,12 +185,16 @@ function NewProduct({ params }) {
       </div>
 
       <div className="flex justify-between items-center">
-        <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600"
+        >
           Enviar
         </button>
 
         {params.id && (
           <button
+            type="button"
             onClick={handleDelete}
             className="bg-red-500 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600"
           >
