@@ -9,12 +9,21 @@ function NewProduct({ params }) {
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState(1);
   const [images, setImages] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(params.id);
+    if (params.id) {
+      fetch(`/api/products/${params.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setTitle(data.title),
+            setPrice(data.price),
+            setDescription(data.description),
+            setCategoryId(data.categoryId),
+            setImages(data.images);
+        });
+    }
   }, []);
-
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,32 +36,60 @@ function NewProduct({ params }) {
       images,
     };
 
-    console.log(productData);
+    if (params.id) {
+      try {
+        const response = await fetch(`/api/products/${params.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(productData),
+        });
 
-    try {
-      const response = await fetch("/api/products", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(productData),
-      });
+        if (response.ok) {
+          const data = response.json();
+          console.log(`Product editing successfully`, data);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Product created successfully", data);
-
-        setTitle(""),
-          setPrice(0.0),
-          setDescription(""),
-          setCategoryId(0),
+          setTitle("");
+          setPrice(0.0);
+          setDescription("");
+          setCategoryId(0);
           setImages("");
-
-        router.push("/");
-      } else {
-        console.error("Error en la creacion del producto", response.statusText);
+        } else {
+          console.error();
+        }
+      } catch (e) {
+        console.error("request error", e);
+        "Error en la creacion del producto", response.statusText;
       }
-    } catch (e) {
-      console.error("request error", e);
+    } else {
+      try {
+        const response = await fetch("/api/products", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(productData),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Product created successfully", data);
+
+          setTitle("");
+          setPrice(0.0);
+          setDescription("");
+          setCategoryId(0);
+          setImages("");
+        } else {
+          console.error(
+            "Error en la creacion del producto",
+            response.statusText
+          );
+        }
+      } catch (e) {
+        console.error("request error", e);
+      }
     }
+
+    router.push("/");
+    router.refresh();
   };
 
   return (
@@ -135,7 +172,7 @@ function NewProduct({ params }) {
       </div>
 
       <button className="border border-solid border-white p-4 w-full rounded">
-        Create
+        Enviar
       </button>
     </form>
   );
