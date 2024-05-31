@@ -25,6 +25,19 @@ function NewProduct({ params }) {
     }
   }, []);
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    if (params.id) {
+      const res = await fetch(`/api/products/${params.id}`, {
+        method: "DELETE",
+        headers: { "Content-type": "application/json" },
+      });
+      const data = await res.json();
+      router.push("/");
+      router.refresh();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -171,9 +184,20 @@ function NewProduct({ params }) {
         />
       </div>
 
-      <button className="border border-solid border-white p-4 w-full rounded">
-        Enviar
-      </button>
+      <div className="flex justify-between items-center">
+        <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">
+          Enviar
+        </button>
+
+        {params.id && (
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white font-bold py-2 px-4 rounded-md hover:bg-red-600"
+          >
+            Delete
+          </button>
+        )}
+      </div>
     </form>
   );
 }
